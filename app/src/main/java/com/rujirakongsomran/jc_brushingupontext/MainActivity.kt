@@ -13,16 +13,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.rujirakongsomran.jc_brushingupontext.ui.theme.GradientColor1
-import com.rujirakongsomran.jc_brushingupontext.ui.theme.GradientColor2
-import com.rujirakongsomran.jc_brushingupontext.ui.theme.GradientColor3
-import com.rujirakongsomran.jc_brushingupontext.ui.theme.JC_BrushingUpOnTextTheme
+import com.rujirakongsomran.jc_brushingupontext.ui.theme.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +35,34 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+class ScaledThirdBrush(val shaderBrush: ShaderBrush) : ShaderBrush() {
+    override fun createShader(size: Size): Shader {
+        return shaderBrush.createShader(size = size / 3f)
+    }
+}
+
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun CreateRepeatingColor() {
+    val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
+    Text(
+        text = "Sometimes hurt is needed to make us grow,\n" +
+                "Failure is needed to make us know \n" +
+                "And loss is needed to make us gain.\n" +
+                "Because life's greatest lessons are\n" +
+                "Usually taught through a little bit of pain.",
+        style = TextStyle(
+            brush = ScaledThirdBrush(
+                Brush.linearGradient(
+                    colors = gradientColors,
+                    tileMode = TileMode.Repeated
+                ) as ShaderBrush
+            )
+        ),
+        modifier = Modifier.padding(8.dp)
+    )
 }
 
 
@@ -132,6 +157,6 @@ fun CreateSolidColor() {
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        CreateSolidColor()
+        CreateRepeatingColor()
     }
 }
