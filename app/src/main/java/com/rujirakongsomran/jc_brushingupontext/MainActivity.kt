@@ -65,6 +65,84 @@ fun CreateRepeatingColor() {
     )
 }
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun TileModeParam() {
+    val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
+
+    Column(
+        modifier = Modifier
+            .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        Text(
+            text = "Sometimes hurt is needed to make us grow,\n" +
+                    "Failure is needed to make us know \n" +
+                    "And loss is needed to make us gain.\n" +
+                    "Because life's greatest lessons are\n" +
+                    "Usually taught through a little bit of pain.",
+            style = TextStyle(
+                brush = ScaledThirdBrush(
+                    Brush.linearGradient(
+                        colors = gradientColors,
+                        tileMode = TileMode.Repeated
+                    ) as ShaderBrush
+                )
+            ),
+        )
+
+        Text(
+            text = "Sometimes hurt is needed to make us grow,\n" +
+                    "Failure is needed to make us know \n" +
+                    "And loss is needed to make us gain.\n" +
+                    "Because life's greatest lessons are\n" +
+                    "Usually taught through a little bit of pain.",
+            style = TextStyle(
+                brush = ScaledThirdBrush(
+                    Brush.linearGradient(
+                        colors = gradientColors,
+                        tileMode = TileMode.Mirror
+                    ) as ShaderBrush
+                )
+            ),
+        )
+
+        Text(
+            text = "Sometimes hurt is needed to make us grow,\n" +
+                    "Failure is needed to make us know \n" +
+                    "And loss is needed to make us gain.\n" +
+                    "Because life's greatest lessons are\n" +
+                    "Usually taught through a little bit of pain.",
+            style = TextStyle(
+                brush = ScaledThirdBrush(
+                    Brush.linearGradient(
+                        colors = gradientColors,
+                        tileMode = TileMode.Clamp
+                    ) as ShaderBrush
+                )
+            ),
+        )
+
+        Text(
+            text = "Sometimes hurt is needed to make us grow,\n" +
+                    "Failure is needed to make us know \n" +
+                    "And loss is needed to make us gain.\n" +
+                    "Because life's greatest lessons are\n" +
+                    "Usually taught through a little bit of pain.",
+            style = TextStyle(
+                brush = ScaledThirdBrush(
+                    Brush.linearGradient(
+                        colors = gradientColors,
+                        tileMode = TileMode.Decal
+                    ) as ShaderBrush
+                )
+            ),
+        )
+    }
+
+}
+
 
 @OptIn(ExperimentalTextApi::class)
 @Composable
@@ -157,6 +235,6 @@ fun CreateSolidColor() {
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        CreateRepeatingColor()
+        TileModeParam()
     }
 }
