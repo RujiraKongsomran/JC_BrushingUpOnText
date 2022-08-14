@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -112,10 +113,25 @@ fun CreateDefaultBrushes() {
     }
 }
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun CreateSolidColor() {
+    Text(
+        text = "Do not allow what you cannot do,\n" +
+                "Interfere with what you can do.\n" +
+                "You can reach your dreams faster\n" +
+                "Doing things you're good at.",
+        style = TextStyle(
+            brush = SolidColor(GradientColor1)
+        ),
+        modifier = Modifier.padding(8.dp)
+    )
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        CreateDefaultBrushes()
+        CreateSolidColor()
     }
 }
