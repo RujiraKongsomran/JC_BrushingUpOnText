@@ -13,11 +13,11 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.rujirakongsomran.jc_brushingupontext.ui.theme.*
 
+@ExperimentalTextApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +35,7 @@ class ScaledThirdBrush(val shaderBrush: ShaderBrush) : ShaderBrush() {
     }
 }
 
-@OptIn(ExperimentalTextApi::class)
+@ExperimentalTextApi
 @Composable
 fun CreateRepeatingColor() {
     val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
@@ -57,7 +57,7 @@ fun CreateRepeatingColor() {
     )
 }
 
-@OptIn(ExperimentalTextApi::class)
+@ExperimentalTextApi
 @Composable
 fun TileModeParam() {
     val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
@@ -136,7 +136,7 @@ fun TileModeParam() {
 }
 
 
-@OptIn(ExperimentalTextApi::class)
+@ExperimentalTextApi
 @Composable
 fun CreateDefaultBrushes() {
     val gradientColors = listOf(GradientColor1, GradientColor2, GradientColor3)
@@ -208,7 +208,7 @@ fun CreateDefaultBrushes() {
     }
 }
 
-@OptIn(ExperimentalTextApi::class)
+@ExperimentalTextApi
 @Composable
 fun CreateSolidColor() {
     Text(
@@ -223,7 +223,7 @@ fun CreateSolidColor() {
     )
 }
 
-@OptIn(ExperimentalTextApi::class)
+@ExperimentalTextApi
 @Composable
 fun BrushWithTextField() {
     val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
@@ -249,7 +249,8 @@ fun BrushWithTextField() {
     }
 }
 
-@OptIn(ExperimentalTextApi::class)
+
+@ExperimentalTextApi
 @Composable
 fun BrushWithBuildAnnotatedString() {
     val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
@@ -277,7 +278,8 @@ fun BrushWithBuildAnnotatedString() {
     }
 }
 
-@OptIn(ExperimentalTextApi::class)
+
+@ExperimentalTextApi
 @Composable
 fun OpacityWithBrush() {
     val gradientColors = listOf(GradientColor1, GradientColor2, GradientColor3)
@@ -326,6 +328,7 @@ fun OpacityWithBrush() {
 
 }
 
+@ExperimentalTextApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
