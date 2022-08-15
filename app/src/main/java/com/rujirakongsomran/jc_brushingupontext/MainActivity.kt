@@ -11,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.text.*
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.rujirakongsomran.jc_brushingupontext.ui.theme.*
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JC_BrushingUpOnTextTheme {
-                BrushWithBuildAnnotatedString()
+                OpacityWithBrush()
             }
         }
     }
@@ -274,10 +277,59 @@ fun BrushWithBuildAnnotatedString() {
     }
 }
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun OpacityWithBrush() {
+    val gradientColors = listOf(GradientColor1, GradientColor2, GradientColor3)
+    val brush = Brush.linearGradient(colors = gradientColors)
+
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            buildAnnotatedString {
+                withStyle(
+                    SpanStyle(
+                        brush = brush,
+                        alpha = .3f,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 28.sp
+                    )
+                ) {
+                    append("I have ")
+                }
+                withStyle(
+                    SpanStyle(
+                        brush = brush,
+                        alpha = 1f,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 28.sp
+                    )
+                ) {
+                    append("feeling ")
+                }
+                withStyle(
+                    SpanStyle(
+                        brush = brush,
+                        alpha = .3f,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 28.sp
+                    )
+                ) {
+                    append("for you.")
+                }
+            }
+        )
+    }
+
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        BrushWithBuildAnnotatedString()
+        OpacityWithBrush()
     }
 }
