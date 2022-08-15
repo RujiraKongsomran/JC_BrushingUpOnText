@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
@@ -26,12 +24,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JC_BrushingUpOnTextTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                }
+                BrushWithTextField()
             }
         }
     }
@@ -231,10 +224,36 @@ fun CreateSolidColor() {
     )
 }
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun BrushWithTextField() {
+    val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
+    var text by remember { mutableStateOf("") }
+    val brush = remember {
+        Brush.linearGradient(
+            colors = gradientColors
+        )
+    }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        OutlinedTextField(
+            value = text,
+            onValueChange = { text = it },
+            label = {
+                Text(text = "Enter Your Name")
+            },
+            textStyle = TextStyle(brush = brush)
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        TileModeParam()
+        BrushWithTextField()
     }
 }
