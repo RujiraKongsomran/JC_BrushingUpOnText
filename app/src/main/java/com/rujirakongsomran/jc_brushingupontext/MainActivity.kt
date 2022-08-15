@@ -3,18 +3,14 @@ package com.rujirakongsomran.jc_brushingupontext
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.text.ExperimentalTextApi
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.rujirakongsomran.jc_brushingupontext.ui.theme.*
@@ -24,7 +20,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             JC_BrushingUpOnTextTheme {
-                BrushWithTextField()
+                BrushWithBuildAnnotatedString()
             }
         }
     }
@@ -250,10 +246,38 @@ fun BrushWithTextField() {
     }
 }
 
+@OptIn(ExperimentalTextApi::class)
+@Composable
+fun BrushWithBuildAnnotatedString() {
+    val gradientColors = listOf(GradientColor7, GradientColor8, GradientColor9)
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            buildAnnotatedString {
+                append("Do not allow what you cannot do,\n")
+                append("Interfere with what you can do.\n")
+                withStyle(
+                    SpanStyle(
+                        brush = Brush.linearGradient(
+                            colors = gradientColors
+                        )
+                    )
+                ) {
+                    append("You can reach your dreams faster\n")
+                }
+                append("Doing things you're good at.")
+            }
+        )
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JC_BrushingUpOnTextTheme {
-        BrushWithTextField()
+        BrushWithBuildAnnotatedString()
     }
 }
